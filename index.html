@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>iOS App 安装</title>
+  <title>App 安装</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.onload = function () {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // 判断 iOS
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = 'itms-services://?action=download-manifest&url=https://media.liaoliaotian.top/app/ios/system/manifest.plist';
+      }
+      // 判断 Android
+      else if (/android/i.test(userAgent)) {
+        window.location.href = 'https://media.liaoliaotian.top/apk/channel/dongpo-kaixinliao_v1.6.0_1006000_1.6.0_release.apk';
+      }
+      // 其他设备（如电脑）
+      else {
+        document.getElementById('message').innerText = '请使用手机访问本页面安装 App。';
+      }
+    }
+  </script>
 </head>
 <body>
-  <h1>点击下面按钮安装 App</h1>
-  <a href="itms-services://?action=download-manifest&url=https://media.liaoliaotian.top/app/ios/system/manifest.plist">
-    安装 App
-  </a>
+  <h1>正在为您准备安装包…</h1>
+  <p id="message">请稍候，如果没有自动跳转，请使用手机重新打开本页面。</p>
 </body>
 </html>
